@@ -12,6 +12,9 @@ namespace Book_crud.Pages.Booklist
         [BindProperty]
         public Book Book { get; set; }
 
+        [TempData]
+        public string Message { get; set; }
+
         public CreateModel(ApplicationDbContext db)
         {
             _db = db;
@@ -32,6 +35,7 @@ namespace Book_crud.Pages.Booklist
             _db.Books.Add(Book);
 
             await _db.SaveChangesAsync();
+            Message = "Book has been created successfully";
             return RedirectToPage("Index");
         }
     }
